@@ -1,0 +1,41 @@
+:host {
+    display: flex;
+    flex-direction: column;
+
+    h1 {
+        align-self: center;
+    }
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.mat-dialog-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.mat-dialog-actions {
+    margin: 0;
+    padding: 0;
+}
+
+.btn {
+    width: 160px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.create {
+    background-color: #3aafda;
+    border-color: #3aafda;
+
+    &:hover {
+        background-color: #3aafdae8;
+        border-color: #3aafdae8;
+    }
+}

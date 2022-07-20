@@ -1,0 +1,35 @@
+:host {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+mat-toolbar {
+    background-color: #3aafda;
+}
+
+.space {
+   flex: 1;
+}
+
+.title {
+    color: #fff;
+}
+
+.mat-icon-btn {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.btn-modal{
+    padding: 0;
+    border: 0;
+    width: 36px;
+    height: 36px;
+    color: #fff;
+    border-radius: 50%;
+    background-color: transparent;
+    cursor: pointer;
+}

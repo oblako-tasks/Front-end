@@ -1,16 +1,24 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CardsComponent } from './components/cards/cards.component';
+import { MaterialAngular } from './material.angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent } from './components/header/header.component';
+import { CreateComponent } from './components/create/create.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CardsComponent,
+    HeaderComponent,
+    CreateComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    MaterialAngular,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

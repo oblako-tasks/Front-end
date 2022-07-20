@@ -1,0 +1,11 @@
+<mat-card class="card">
+    <mat-card-title>Семья</mat-card-title>
+    <mat-divider></mat-divider>
+    
+    <mat-card-content *ngFor="let todo of todos">
+        <mat-checkbox
+                [checked]="todo.isCompleted">
+            {{todo.text}}
+        </mat-checkbox>
+    </mat-card-content>
+</mat-card>

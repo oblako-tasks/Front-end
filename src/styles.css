@@ -1,0 +1,10 @@
+/* @import '@angular/material/prebuilt-themes/indigo-pink.css'; */
+
+html, body { height: 100%; }
+body {
+    margin: 0;
+    font-family: 'Roboto', 'Noto', sans-serif;
+    line-height: 1.5;
+    min-height: 100vh;
+    background: #f2f2f2;
+}

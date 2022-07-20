@@ -6,5 +6,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  public tasks = [
+    {
+      id: 1,
+      name: 'Семья',
+    },
+    {
+      id: 2,
+      name: 'Работа',
+    },
+    {
+      id: 3,
+      name: 'Прочее',
+    }
+  ];
+
   title = 'my-app';
 }
