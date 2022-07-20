@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>Новая задача</h1>
+
+<div mat-dialog-content>
+    <mat-form-field appearance="fill">
+        <input matInput color="transparent" placeholder="Название задачи">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-select [(ngModel)]="selectedCategory" placeholder="Категория">
+            <ng-container *ngFor="let card of data">
+                <mat-option value="{{card.name}}">
+                    {{card.name}}
+                </mat-option>
+            </ng-container>
+
+            <mat-option value="new">Новая категория</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="selectedCategory === 'new'">
+        <input matInput 
+               placeholder="Название категории">
+    </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button class="btn" (click)="onNoClick()">Отмена</button>
+    <button mat-button class="btn create" (click)="createTodo()">Ok</button>
+</div>
