@@ -1,9 +1,16 @@
 <header>
-    <app-header></app-header>
+    <app-header
+            [data]="data"
+            (childEvent)="updateTasks($event)">
+    </app-header>
 </header>
 
 <main>
     <div class="cards-list">
-        <app-cards *ngFor="let task of tasks"></app-cards>
+        <app-cards *ngFor="let task of data"
+                    [id]="task.id"
+                    [title]="task.title"
+                    [todos]="task.todos"
+        ></app-cards>
     </div>
 </main>

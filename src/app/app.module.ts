@@ -7,20 +7,22 @@ import { MaterialAngular } from './material.angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component';
 import { CreateComponent } from './components/create/create.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     CardsComponent,
     HeaderComponent,
-    CreateComponent,
+    CreateComponent
   ],
   imports: [
     BrowserModule,
     MaterialAngular,
     BrowserAnimationsModule,
+    HttpClientModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

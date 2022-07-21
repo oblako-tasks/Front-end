@@ -22,7 +22,7 @@ import { MatSelectModule } from '@angular/material/select';
         ReactiveFormsModule,
         MatFormFieldModule,
         MatInputModule,
-        MatSelectModule,
+        MatSelectModule
     ]
 })
 export class MaterialAngular { }

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Todo } from 'src/app/models/todo';
+import { TodosService } from 'src/app/service/todos.service';
 
 @Component({
   selector: 'app-cards',
@@ -6,31 +8,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cards.component.scss']
 })
 export class CardsComponent implements OnInit {
+  @Input()
+  public id: number | undefined;
+  
+  @Input()
+  public title: string | undefined;
 
-  public todos = [
-    {
-      id: 1,
-      text: 'Заплатить за квартиру',
-      isCompleted: true
-    },
-    {
-      id: 2,
-      text: 'Заплатить за квартиру',
-      isCompleted: false
-    },
-    {
-      id: 3,
-      text: 'Заплатить за квартиру',
-      isCompleted: true
-    }
-  ];
+  @Input()
+  public todos: Todo[] | undefined;
 
-  constructor() { }
+  public status: number = 0;
 
-  ngOnInit(): void {
-  }
+  constructor(private todosService: TodosService) { }
 
-  toggleStatusTodo() {
-    
+  ngOnInit(): void { }
+
+  toggleStatusTodo(todo: Todo) {
+    this.todosService.updateCheckCompleted(todo).subscribe();
   }
 }

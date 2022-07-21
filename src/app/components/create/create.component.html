@@ -2,14 +2,14 @@
 
 <div mat-dialog-content>
     <mat-form-field appearance="fill">
-        <input matInput color="transparent" placeholder="Название задачи">
+        <input matInput [(ngModel)]="createdTextTodo" placeholder="Название задачи">
     </mat-form-field>
 
     <mat-form-field>
         <mat-select [(ngModel)]="selectedCategory" placeholder="Категория">
-            <ng-container *ngFor="let card of data">
-                <mat-option value="{{card.name}}">
-                    {{card.name}}
+            <ng-container *ngFor="let card of data.titles">
+                <mat-option value="{{card.title}}">
+                    {{card.title}}
                 </mat-option>
             </ng-container>
 
@@ -19,7 +19,8 @@
 
     <mat-form-field *ngIf="selectedCategory === 'new'">
         <input matInput 
-               placeholder="Название категории">
+               placeholder="Название категории"
+               [(ngModel)]="createdTextTask">
     </mat-form-field>
 </div>
 

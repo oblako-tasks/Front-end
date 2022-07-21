@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Tasks } from 'src/app/models/tasks';
 import { CreateComponent } from '../create/create.component';
 
 @Component({
@@ -8,20 +9,28 @@ import { CreateComponent } from '../create/create.component';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  @Input()
+  public data: Tasks[] = [];
 
+  @Output()
+  public childEvent = new EventEmitter();
+  
   constructor(public dialog: MatDialog) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    const titleTasks = this.data.map(({ id, title }) => ({ id, title, }))
+    
     const dialogRef = this.dialog.open(CreateComponent, {
       width: '375px',
       enterAnimationDuration,
       exitAnimationDuration,
+      data: {titles: titleTasks}
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+    dialogRef.afterClosed().subscribe(() => {
+      this.childEvent.emit();
     });
   }
 }
