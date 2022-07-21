@@ -1,27 +1,33 @@
-# MyApp
+## DEMO
+[https://oblako-tasks-front-end.herokuapp.com/](https://oblako-tasks-front-end.herokuapp.com/)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.6.
+## Installation
 
-## Development server
+```bash
+$ npm install
+```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Running the app
 
-## Code scaffolding
+```bash
+# development
+$ ng serve
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# build the project
+$ ng build
+```
 
-## Build
+## Итог
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Инициализация Angular-приложения и залито на Heroku
+- Создана front-end часть для списка задач
 
-## Running unit tests
+## API
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- В проекте использовалось API -[https://oblako-tasks-back-end.herokuapp.com/projects](https://oblako-tasks-back-end.herokuapp.com/projects)
+- Ссылка на репозиторий с API - [https://github.com/oblako-tasks/Back-end](https://github.com/oblako-tasks/Back-end)
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Вопросы
+- Работа с API выполнена с HttpClient, но можно и создать сервис GraphQL по работе с Apollo сервером
+- Принцип работы Angular themes, т.к. во всех примерах был использован фабричный шаблон
+- Хранение данных происходит в самих компонентах и приходиться прокидывать туда-сюда данные. Сделано это только из-за того, что мало компанентов. Как вариант можно было создать Store в Angular используя Redux.
