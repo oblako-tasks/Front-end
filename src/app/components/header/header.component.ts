@@ -29,8 +29,8 @@ export class HeaderComponent implements OnInit {
       data: {titles: titleTasks}
     });
 
-    dialogRef.afterClosed().subscribe(() => {
-      this.childEvent.emit();
+    dialogRef.afterClosed().subscribe((result) => {
+      this.childEvent.emit(result);
     });
   }
 }

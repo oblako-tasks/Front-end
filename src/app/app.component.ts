@@ -16,7 +16,6 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.getAllCards();
-    this.taskService.getTasks().subscribe(() => {this.getAllCards()});
   }
 
   private getAllCards() {
@@ -24,6 +23,21 @@ export class AppComponent {
   }
 
   updateTasks(event: any) {
-    this.ngOnInit();
+    if (event) {
+      let objIndex = this.data.findIndex((obj => obj.title == event.title));
+    
+    if (objIndex !== -1) {
+      this.data[objIndex].todos.push(event.todos);
+    } else {
+      const updateTask = {
+        id: event.id,
+        title: event.title,
+        todos: [event.todos]
+      };
+
+      this.data.push(updateTask);
+    }
+    }
+    // this.ngOnInit();
   }
 }

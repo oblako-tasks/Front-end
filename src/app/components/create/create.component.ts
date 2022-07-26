@@ -33,7 +33,7 @@ export class CreateComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  createTodo(): void {
+  createTodo() {
     if (this.selectedCategory !== 'new') {
       this.task = {
         "task": {
@@ -56,8 +56,8 @@ export class CreateComponent implements OnInit {
       }
     }
     
-    this.tasksService.saveTask(this.task).subscribe(() => { });
-
-    this.dialogRef.close();
+    this.tasksService.saveTask(this.task).subscribe((result) => {
+      this.dialogRef.close(result);
+    });
   }
 }
