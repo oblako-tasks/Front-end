@@ -16,8 +16,21 @@
         margin-top: 30px;
     }
 
-    ::ng-deep mat-checkbox label  span:nth-child(2) {
+    ::ng-deep mat-checkbox .mat-checkbox-label {
         white-space: normal;
+    }
+
+    ::ng-deep .mat-checkbox-checked {
+        text-decoration:line-through;
+    }
+
+    ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
+        opacity: 0.03 !important;
+        background-color: #3aafda!important;
+    }
+    
+    ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+        background-color: #3aafda;
     }
 }
 
