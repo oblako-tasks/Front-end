@@ -23,7 +23,11 @@ export class CardsComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  toggleStatusTodo(todo: Todo) {
+  trackByFn(index: number, todo: Todo): number {
+    return todo.id!;
+  }
+
+  toggleStatusTodo(todo: Todo): void {
     this.todosService.updateCheckCompleted(todo).subscribe();
   }
 }

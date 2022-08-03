@@ -18,26 +18,29 @@ export class AppComponent {
     this.getAllCards();
   }
 
-  private getAllCards() {
+  trackByFn(index: number, task: Tasks): number {
+    return task.id;
+  }
+
+  private getAllCards(): void {
     this.taskService.getTasks().subscribe(cards => this.data = cards);
   }
 
-  updateTasks(event: any) {
+  updateTasks(event: any): void {
     if (event) {
       let objIndex = this.data.findIndex((obj => obj.title == event.title));
     
-    if (objIndex !== -1) {
-      this.data[objIndex].todos.push(event.todos);
-    } else {
-      const updateTask = {
-        id: event.id,
-        title: event.title,
-        todos: [event.todos]
-      };
+      if (objIndex !== -1) {
+        this.data[objIndex].todos.push(event.todos);
+      } else {
+        const updateTask = {
+          id: event.id,
+          title: event.title,
+          todos: [event.todos]
+        };
 
-      this.data.push(updateTask);
+        this.data.push(updateTask);
+      }
     }
-    }
-    // this.ngOnInit();
   }
 }
