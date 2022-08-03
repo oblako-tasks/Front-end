@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component';
 import { CreateComponent } from './components/create/create.component';
 import { HttpClientModule } from '@angular/common/http';
+import { GraphQLModule } from './graphql.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     MaterialAngular,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    GraphQLModule
   ],
   providers: [ ],
   bootstrap: [ AppComponent ]

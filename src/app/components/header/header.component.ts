@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void { }
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    const titleTasks = this.data.map(({ id, title }) => ({ id, title, }))
+    const titleTasks = this.data.map(({ id, title }) => ({ id, title, }));
     
     const dialogRef = this.dialog.open(CreateComponent, {
       width: '375px',
@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
       data: {titles: titleTasks}
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().subscribe((result: any) => {
       this.childEvent.emit(result);
     });
   }

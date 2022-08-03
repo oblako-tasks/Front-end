@@ -2,7 +2,7 @@
     <mat-card-title>{{title}}</mat-card-title>
     <mat-divider></mat-divider>
     
-    <mat-card-content *ngFor="let todo of todos">
+    <mat-card-content *ngFor="let todo of todos; trackBy: trackByFn">
         <mat-checkbox
                 [checked]="todo.isCompleted"
                 (click)="toggleStatusTodo(todo)">

@@ -7,7 +7,7 @@
 
 <main>
     <div class="cards-list">
-        <app-cards *ngFor="let task of data"
+        <app-cards *ngFor="let task of data; trackBy: trackByFn"
                     [id]="task.id"
                     [title]="task.title"
                     [todos]="task.todos"

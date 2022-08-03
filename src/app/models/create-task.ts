@@ -1,7 +1,9 @@
-import { Task } from "./task";
 import { Todo } from "./todo";
 
 export class CreateTask {
-    task: Task | undefined;
+    task: {
+        id?: number;
+        title: string;
+    } | undefined;
     todos: Todo | undefined;
 }
