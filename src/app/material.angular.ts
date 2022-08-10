@@ -25,4 +25,5 @@ import { MatSelectModule } from '@angular/material/select';
         MatSelectModule
     ]
 })
+
 export class MaterialAngular { }

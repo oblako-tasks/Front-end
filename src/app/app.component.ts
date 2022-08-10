@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Apollo, gql } from 'apollo-angular';
+import { Apollo, QueryRef } from 'apollo-angular';
+import { ALLDATA_QUERY } from './graphql';
 import { Tasks } from './models/tasks';
-import { TaskService } from './service/task.service';
 
 @Component({
   selector: 'app-root',
@@ -10,32 +10,13 @@ import { TaskService } from './service/task.service';
 })
 export class AppComponent {
   public data: Tasks[] = [];
+  private query: QueryRef<any> | undefined;
 
   title = 'my-app';
 
-  constructor(
-    private taskService: TaskService,
-    private apollo: Apollo
-  ) {}
+  constructor(private apollo: Apollo) { }
 
   ngOnInit(): void {
-  this.apollo.query({
-      query: gql`query {
-        tasks {
-          id,
-          title,
-        }
-        todos {
-          id,
-          text,
-          isCompleted,
-          taskID,
-        }
-      }`
-    }).subscribe(({ data }) => {
-      console.log(data);
-    });
-
     this.getAllCards();
   }
 
@@ -44,23 +25,31 @@ export class AppComponent {
   }
 
   private getAllCards(): void {
-    this.taskService.getTasks().subscribe(cards => this.data = cards);
+    this.apollo
+    .query({
+      query: ALLDATA_QUERY,
+      variables: { }
+    })
+    .subscribe(({ data }: any) => {
+      this.data = data.allData;
+    });
   }
 
-  updateTasks(event: any): void {
+  updateTasks(event: Tasks): void {
     if (event) {
       let objIndex = this.data.findIndex((obj => obj.title == event.title));
     
       if (objIndex !== -1) {
-        this.data[objIndex].todos.push(event.todos);
+        console.log(event, event.todos);
+        this.data[objIndex].todos = [...this.data[objIndex].todos, event.todos[0]]; // ?!
       } else {
         const updateTask = {
           id: event.id,
           title: event.title,
-          todos: [event.todos]
+          todos: event.todos
         };
 
-        this.data.push(updateTask);
+        this.data = [...this.data, updateTask];
       }
     }
   }

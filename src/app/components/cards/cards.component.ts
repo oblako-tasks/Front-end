@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Apollo, MutationResult } from 'apollo-angular';
+import { Observable } from 'rxjs';
+import { UPDATETODO_MUTATION } from 'src/app/graphql';
 import { Todo } from 'src/app/models/todo';
-import { TodosService } from 'src/app/service/todos.service';
 
 @Component({
   selector: 'app-cards',
@@ -17,9 +19,9 @@ export class CardsComponent implements OnInit {
   @Input()
   public todos: Todo[] | undefined;
 
-  public status: number = 0;
+  private query: Observable<MutationResult<any>> | undefined;
 
-  constructor(private todosService: TodosService) { }
+  constructor(private apollo: Apollo) { }
 
   ngOnInit(): void { }
 
@@ -28,6 +30,13 @@ export class CardsComponent implements OnInit {
   }
 
   toggleStatusTodo(todo: Todo): void {
-    this.todosService.updateCheckCompleted(todo).subscribe();
+    this.apollo
+    .mutate({
+      mutation: UPDATETODO_MUTATION,
+      variables: {
+        todoID!: +<number>todo.id
+      }
+    })
+    .subscribe(() => {});
   }
 }

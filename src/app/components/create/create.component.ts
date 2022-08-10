@@ -1,7 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Apollo } from 'apollo-angular';
+import { ALLDATA_QUERY, CREATETASK_MUTATION } from 'src/app/graphql';
 import { CreateTask } from 'src/app/models/create-task';
-import { TaskService } from 'src/app/service/task.service';
+
 export interface TaskName {
   id: number;
   title: string;
@@ -24,7 +26,7 @@ export class CreateComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<CreateComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogDataTask,
-    private tasksService: TaskService
+    private apollo: Apollo
   ) { }
 
   ngOnInit(): void { }
@@ -33,31 +35,52 @@ export class CreateComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  createTodo() {
+  createTodo(): void {
     if (this.selectedCategory !== 'new') {
       this.task = {
-        "task": {
-          "title": this.selectedCategory
+        task: {
+          title: this.selectedCategory
         },
-        "todos": {
-          "text": this.createdTextTodo,
-          "isCompleted": false
+        todos: {
+          text: this.createdTextTodo,
+          isCompleted: false
         }
       }
     } else {
       this.task = {
-        "task": {
-          "title": this.createdTextTask
+        task: {
+          title: this.createdTextTask
         },
-        "todos": {
-          "text": this.createdTextTodo,
-          "isCompleted": false
+        todos: {
+          text: this.createdTextTodo,
+          isCompleted: false
         }
       }
     }
-    
-    this.tasksService.saveTask(this.task).subscribe((result) => {
-      this.dialogRef.close(result);
+
+    this.apollo
+    .mutate({
+      mutation: CREATETASK_MUTATION,
+      variables: {
+        data: this.task
+      },
+      update: (store, { data }: any) => {
+        let result : any = store.readQuery({
+          query: ALLDATA_QUERY
+        });
+        
+        let cached = {
+          allData: [...result.allData, data.createTask]
+        };
+
+        store.writeQuery({
+          query: ALLDATA_QUERY,
+          data: cached
+        });
+      }
+    })
+    .subscribe(({data} : any) => {
+      this.dialogRef.close(data.createTask);
     });
   }
 }
