@@ -29,14 +29,14 @@ export class AppComponent {
   updateTasks(event: any): void {
     if (event) {
       let objIndex = this.data.findIndex((obj => obj.title == event.title));
-    
+
       if (objIndex !== -1) {
-        this.data[objIndex].todos.push(event.todos);
+        this.data[objIndex].todos.push(event.todos[0]);
       } else {
         const updateTask = {
           id: event.id,
           title: event.title,
-          todos: [event.todos]
+          todos: [event.todos[0]]
         };
 
         this.data.push(updateTask);

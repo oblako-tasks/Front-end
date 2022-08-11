@@ -16,7 +16,7 @@ mat-form-field {
     flex-direction: row;
     justify-content: space-between;
     margin: 0;
-    padding: 0;
+    padding: 10px 0 0 0;
 }
 
 .btn {
@@ -35,6 +35,13 @@ mat-form-field {
     &:hover {
         background-color: #3aafdae8;
         border-color: #3aafdae8;
+    }
+    
+    &:disabled {
+        border: 1px solid #999999;
+        background-color: #cccccc;
+        color: #666666;
+        cursor: default;
     }
 }
 
